@@ -14,7 +14,7 @@ def import_level(filename):
 
 def save_level(filename):
     MFLFile = open(lvlfile, "r")
-    level = open("SavedLvls/" + filename, "w")
+    level = open("./SavedLvls/" + filename, "w")
     for line in MFLFile.read().splitlines():
         level.write(line + "\n")
     MFLFile.close()
@@ -29,8 +29,8 @@ def terminal():
         terminal()
     elif cmd == "load":
         lvlname = input("Enter level filename (including filetype): ")
-        if os.path.isfile("SavedLvls/" + lvlname):
-            import_level("SavedLvls/" + lvlname)
+        if os.path.isfile("./SavedLvls/" + lvlname):
+            import_level("./SavedLvls/" + lvlname)
             print("Level Loaded!")
             time.sleep(1)
             terminal()
