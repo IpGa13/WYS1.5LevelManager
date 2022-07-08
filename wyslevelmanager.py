@@ -21,10 +21,10 @@ def save_level(filename):
     level.close()
 
 def terminal():
-    print("\nWelcome to WYS Level manager Tool v1.0\nUse command 'help' to display a list of all commands\n\n")
+    print("\nWelcome to WYS Level manager Tool v1.2\nUse command 'help' to display a list of all commands\n\n")
     cmd = input("Enter Command:\n>> ")
     if cmd == "help":
-        print("List of Commands:\nload : loads a level by filename\nsave : saves/exports level\nexit : quits out of this programm")
+        print("List of Commands:\nload : loads a level by filename\nsave : saves/exports level\nexit : quits out of this programm\nhelp : shows this command list")
         time.sleep(1)
         terminal()
     elif cmd == "load":
@@ -39,11 +39,18 @@ def terminal():
             time.sleep(1)
             terminal()
     elif cmd == "save":
-        lvlname = input("Please choose a Filename (including filetype): ")
-        save_level(lvlname)
-        print("Level Saved")
-        time.sleep(1)
-        terminal()
+        if os.path.isdir("./SavedLvls"):
+            lvlname = input("Please choose a Filename (including filetype): ")
+            save_level(lvlname)
+            print("Level Saved")
+            time.sleep(1)
+            terminal()
+        else:
+            print("Error: Save Directory not Found! creating...")
+            os.system("md .\SavedLvls")
+            time.sleep(1)
+            print("Directory Created, Please try Again!\n")
+            terminal()
 
     elif cmd == "exit":
         print("Exitting...")
