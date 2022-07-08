@@ -21,7 +21,7 @@ def save_level(filename):
     level.close()
 
 def terminal():
-    print("\nWelcome to WYS Level manager Tool v1.2\nUse command 'help' to display a list of all commands\n\n")
+    print("\nWelcome to WYS Level-Manager Tool v1.2\nUse command 'help' to display a list of all commands\n\n")
     cmd = input("Enter Command:\n>> ")
     if cmd == "help":
         print("List of Commands:\nload : loads a level by filename\nsave : saves/exports level\nexit : quits out of this programm\nhelp : shows this command list")
