@@ -4,21 +4,29 @@ import time
 lvlfile = os.getenv("localappdata") + "/Will_You_Snail/MyFirstLevel.lvl"
 
 def import_level(filename):
-    level = open(filename, "r")
-    lvcontent = level.read().splitlines()
-    level.close()
-    MFLFile = open(lvlfile , "w")
-    for line in lvcontent:
-        MFLFile.write(line + "\n")
-    MFLFile.close()
+    try:
+        level = open(filename, "r")
+        lvcontent = level.read().splitlines()
+        MFLFile = open(lvlfile , "w")
+        for line in lvcontent:
+            MFLFile.write(line + "\n")   
+    except:
+        print("Error: Level file not found!")
+        time.sleep(0.25)
+        terminal()
+    finally:
+        level.close()
+        MFLFile.close()
 
 def save_level(filename):
-    MFLFile = open(lvlfile, "r")
-    level = open("./SavedLvls/" + filename + ".lvl", "w")
-    for line in MFLFile.read().splitlines():
-        level.write(line + "\n")
-    MFLFile.close()
-    level.close()
+    try:
+        MFLFile = open(lvlfile, "r")
+        level = open("./SavedLvls/" + filename + ".lvl", "w")
+        for line in MFLFile.read().splitlines():
+            level.write(line + "\n")
+    finally:
+        MFLFile.close()
+        level.close()
 
 def terminal():
     print("\nWelcome to WYS Level manager Tool v0.1.2\nUse command 'help' to display a list of all commands\n\n")
@@ -34,10 +42,7 @@ def terminal():
             print("Level Loaded!")
             time.sleep(0.25)
             terminal()
-        else:
-            print("Error: Level file doesn't exist!")
-            time.sleep(0.25)
-            terminal()
+
     elif cmd == "save":
         if os.path.isdir("./SavedLvls"):
             lvlname = input("Please choose a Filename: ")
