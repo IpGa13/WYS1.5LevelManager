@@ -28,11 +28,30 @@ def save_level(filename):
         MFLFile.close()
         level.close()
 
+def list_levels():
+    print("List of all Saved Levels:\n")
+    for file in os.listdir("./SavedLvls"):
+        if file.endswith(".lvl"):
+            print(file)
+    time.sleep(0.25)
+    terminal()
+
+helpstr = """
+    List of Commands:
+
+    "help" : shows this command list
+    "list" : lists all saved levels
+    "load" : loads a level by filename
+    "save" : saves/exports level
+    "exit" : quits out of this programm
+
+"""
+
 def terminal():
-    print("\nWelcome to WYS Level manager Tool v0.1.2\nUse command 'help' to display a list of all commands\n\n")
+    print("\nWelcome to WYS Level manager Tool v0.1.4\nUse command 'help' to display a list of all commands\n\n")
     cmd = input("Enter Command:\n>> ")
     if cmd == "help":
-        print("List of Commands:\nload : loads a level by filename\nsave : saves/exports level\nexit : quits out of this programm\nhelp : shows this command list")
+        print(helpstr)
         time.sleep(0.25)
         terminal()
     elif cmd == "load":
@@ -56,6 +75,10 @@ def terminal():
             time.sleep(0.25)
             print("Directory Created, Please try Again!\n")
             terminal()
+    elif cmd == "list":
+        list_levels()
+        time.sleep(0.25)
+        terminal()
 
     elif cmd == "exit":
         print("Exitting...")
